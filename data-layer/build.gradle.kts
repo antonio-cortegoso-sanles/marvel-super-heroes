@@ -68,7 +68,6 @@ dependencies {
     androidTestImplementation(Libraries.mockitoAndroid)
     androidTestImplementation(Libraries.testRunner)
     androidTestImplementation(Libraries.testRules)
-    androidTestImplementation(Libraries.espresso)
     // koin testing tools
     androidTestImplementation(Libraries.koinTest) {
         exclude("group", "org.mockito")

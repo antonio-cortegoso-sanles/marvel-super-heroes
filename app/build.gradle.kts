@@ -53,7 +53,6 @@ dependencies {
     implementation(Libraries.multidex)
     implementation(Libraries.googleMaterial)
     implementation(Libraries.dxCore)
-    implementation(Libraries.appCompat)
 
     // other modules
     implementation(project(":presentation-layer"))

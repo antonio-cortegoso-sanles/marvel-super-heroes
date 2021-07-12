@@ -1,0 +1,5 @@
+<resources>
+    <string name="empty">empty</string>
+    <string name="name_title">Name:</string>
+    <string name="description_title">Description:</string>
+</resources>

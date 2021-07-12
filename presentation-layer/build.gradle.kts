@@ -66,6 +66,8 @@ dependencies {
     // 3rd party libraries
     implementation(Libraries.koinAndroid)
     implementation(Libraries.koinViewmodel)
+    implementation(Libraries.lottie)
+    implementation(Libraries.glide)
 
     // testing dependencies - Unit Test
     testImplementation(Libraries.junit)
@@ -79,11 +81,12 @@ dependencies {
     androidTestImplementation(Libraries.mockitoAndroid)
     androidTestImplementation(Libraries.testRunner)
     androidTestImplementation(Libraries.testRules)
-    androidTestImplementation(Libraries.espresso)
 
     // koin testing tools
     androidTestImplementation(Libraries.koinTest) {
         exclude("group", "org.mockito")
         exclude("group", "mockito-inline")
     }
+
+    implementation(kotlin("reflect"))
 }
