@@ -4,6 +4,7 @@ plugins {
     kotlin(Plugins.kotlinAndroid)
     kotlin(Plugins.kotlinAndroidExtensions)
     kotlin(Plugins.kotlinKapt)
+    id("kotlin-android")
 }
 
 android {

@@ -2,6 +2,7 @@ package es.plexus.android.domain_layer.di
 
 import es.plexus.android.domain_layer.DomainLayerContract
 import es.plexus.android.domain_layer.DomainLayerContract.Data.Companion.SUPER_HEROES_REPOSITORY_TAG
+import es.plexus.android.domain_layer.domain.ResultsBo
 import es.plexus.android.domain_layer.domain.SuperHeroesDataBo
 import es.plexus.android.domain_layer.feature.*
 import es.plexus.android.domain_layer.usecase.*
@@ -24,6 +25,12 @@ val bridgeModule = module {
             getSuperHeroDetailUc = get(named(name=FETCH_SUPER_HERO_DETAIL_UC_TAG))
         )
     }
+
+    factory<HeroDetailDomainLayerBridge>(named(name = HERO_DETAIL_BRIDGE_TAG)) {
+        HeroDetailDomainLayerBridgeImpl(
+            getSuperHeroDetailUc = get(named(name=GET_SUPER_HERO_DETAIL_UC_TAG))
+        )
+    }
 }
 
 @ExperimentalCoroutinesApi
@@ -32,12 +39,16 @@ val useCaseModule = module {
         FetchSuperHeroesListDataUc(superHeroesRepository = get(named(name = SUPER_HEROES_REPOSITORY_TAG)))
     }
 
-    factory<DomainLayerContract.Presentation.UseCase<Int, Boolean>>(named(name = FETCH_SUPER_HERO_DETAIL_UC_TAG)) {
+    factory<DomainLayerContract.Presentation.UseCase<Int, Int>>(named(name = FETCH_SUPER_HERO_DETAIL_UC_TAG)) {
         FetchSuperHeroDetailUc(superHeroesRepository = get(named(name = SUPER_HEROES_REPOSITORY_TAG)))
     }
 
     factory<DomainLayerContract.Presentation.UseCase<Nothing, SuperHeroesDataBo>>(named(name = GET_SUPER_HEROES_LIST_PERSISTED_UC_TAG)) {
         GetSuperHeroesListPersistedDataUc(superHeroesRepository = get(named(name = SUPER_HEROES_REPOSITORY_TAG)))
+    }
+
+    factory<DomainLayerContract.Presentation.UseCase<Int, ResultsBo>>(named(name = GET_SUPER_HERO_DETAIL_UC_TAG)) {
+        GetSuperHeroDetailUc(superHeroesRepository = get(named(name = SUPER_HEROES_REPOSITORY_TAG)))
     }
 
 }

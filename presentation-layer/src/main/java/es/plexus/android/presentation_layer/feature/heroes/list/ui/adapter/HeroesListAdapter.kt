@@ -8,9 +8,9 @@ import es.plexus.android.presentation_layer.databinding.ItemHeroBinding
 import es.plexus.android.presentation_layer.domain.ResultsVo
 
 class HeroesListAdapter(
-    private val data : List<ResultsVo>,
+    private val data: List<ResultsVo>,
     private val onSelectHero: (ResultsVo) -> Unit
-) : RecyclerView.Adapter<HeroesListAdapter.HeroViewHolder>(){
+) : RecyclerView.Adapter<HeroesListAdapter.HeroViewHolder>() {
 
     override fun getItemCount(): Int = data.size
 
@@ -20,7 +20,7 @@ class HeroesListAdapter(
                 LayoutInflater.from(
                     parent.context
                 ), parent, false
-            ),onSelectHero
+            ), onSelectHero
         )
     }
 
@@ -31,7 +31,7 @@ class HeroesListAdapter(
     class HeroViewHolder(val view: ItemHeroBinding, private val onSelectHero: (ResultsVo) -> Unit) :
         RecyclerView.ViewHolder(view.root) {
         fun bind(hero: ResultsVo) {
-            with(view){
+            with(view) {
                 tvHeroNameValue.text = hero.name.trim()
                 tvHeroDescriptionValue.text = hero.description.trim()
 

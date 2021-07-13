@@ -57,13 +57,13 @@ interface DomainLayerContract {
 
         interface SuperHeroesRepository {
             suspend fun fetchSuperHeroesListData(): Either<FailureBo, Boolean>
-            suspend fun fetchSuperHeroDetailData(id: Int): Either<FailureBo, Boolean>
+            suspend fun fetchSuperHeroDetailData(id: Int): Either<FailureBo, Int>
 
             suspend fun saveSuperHeroesListData(data : SuperHeroesDataBo): Either<FailureBo, Boolean>
-            suspend fun saveSuperHeroesDetailData(data : SuperHeroesDataBo): Either<FailureBo, Boolean>
+            suspend fun saveSuperHeroesDetailData(data : ResultsBo): Either<FailureBo, Int>
 
             suspend fun getSuperHeroesListPersistedData(): Either<FailureBo, SuperHeroesDataBo>
-            suspend fun getSuperHeroesDetailPersistedData(id: Int): Either<FailureBo, SuperHeroesDataBo>
+            suspend fun getSuperHeroesDetailPersistedData(id: Int): Either<FailureBo, ResultsBo>
 
         }
 

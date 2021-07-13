@@ -6,5 +6,6 @@ import es.plexus.android.presentation_layer.domain.SuperHeroesDataVo
 sealed class HeroesListState : BaseState() {
 
     class LoadHeroes(val data: SuperHeroesDataVo) : HeroesListState()
+    class GoToDetail(val id : Int) : HeroesListState()
 
 }

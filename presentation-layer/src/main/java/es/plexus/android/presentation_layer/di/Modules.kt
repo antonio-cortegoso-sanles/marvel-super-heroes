@@ -1,6 +1,7 @@
 package es.plexus.android.presentation_layer.di
 
 import es.plexus.android.domain_layer.feature.HEROES_LIST_BRIDGE_TAG
+import es.plexus.android.domain_layer.feature.HERO_DETAIL_BRIDGE_TAG
 import es.plexus.android.domain_layer.feature.SPLASH_BRIDGE_TAG
 import es.plexus.android.presentation_layer.feature.heroes.detail.viewmodel.HeroDetailViewModel
 import es.plexus.android.presentation_layer.feature.heroes.list.viewmodel.HeroesListViewModel
@@ -23,7 +24,7 @@ val heroesList = module {
 
 @ExperimentalCoroutinesApi
 val heroDetail = module {
-    viewModel { HeroDetailViewModel(bridge = get(named(name= SPLASH_BRIDGE_TAG))) }
+    viewModel { HeroDetailViewModel(bridge = get(named(name= HERO_DETAIL_BRIDGE_TAG))) }
 }
 
 @ExperimentalCoroutinesApi

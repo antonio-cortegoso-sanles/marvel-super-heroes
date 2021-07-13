@@ -11,9 +11,9 @@ const val FETCH_SUPER_HERO_DETAIL_UC_TAG = "fetchSuperHeroDetailUc"
 
 class FetchSuperHeroDetailUc(
     private val superHeroesRepository: DomainLayerContract.Data.SuperHeroesRepository
-) : DomainLayerContract.Presentation.UseCase<Int, Boolean> {
+) : DomainLayerContract.Presentation.UseCase<Int, Int> {
 
-    override suspend fun run(params: Int?): Either<FailureBo, Boolean> =
+    override suspend fun run(params: Int?): Either<FailureBo, Int> =
         params?.let { id ->
             superHeroesRepository.fetchSuperHeroDetailData(id)
         }?:FailureBo.NoData.left()

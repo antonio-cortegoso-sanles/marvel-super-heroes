@@ -10,18 +10,18 @@ const val HEROES_LIST_BRIDGE_TAG = "heroesListDomainLayerBridge"
 
 interface HeroesListDomainLayerBridge : BaseDomainLayerBridge {
     suspend fun getSuperHeroesList(): Either<FailureBo, SuperHeroesDataBo>
-    suspend fun getSuperHeroDetail(params : Int): Either<FailureBo, SuperHeroesDataBo>
+    suspend fun fetchSuperHeroDetail(params : Int): Either<FailureBo, Int>
 }
 
 internal class HeroesListDomainLayerBridgeImpl(
     private val getSuperHeroesListUc: DomainLayerContract.Presentation.UseCase<Nothing, SuperHeroesDataBo>,
-    private val getSuperHeroDetailUc: DomainLayerContract.Presentation.UseCase<Int, SuperHeroesDataBo>
+    private val getSuperHeroDetailUc: DomainLayerContract.Presentation.UseCase<Int, Int>
 ) : HeroesListDomainLayerBridge{
 
     override suspend fun getSuperHeroesList(): Either<FailureBo, SuperHeroesDataBo> =
         getSuperHeroesListUc.run()
 
-    override suspend fun getSuperHeroDetail(params : Int): Either<FailureBo, SuperHeroesDataBo> =
+    override suspend fun fetchSuperHeroDetail(params : Int): Either<FailureBo, Int> =
         getSuperHeroDetailUc.run(params)
 
 }

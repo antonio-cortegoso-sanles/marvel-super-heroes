@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id (Plugins.androidLibrary)
 
@@ -5,6 +7,9 @@ plugins {
     kotlin(Plugins.kotlinAndroidExtensions)
     kotlin(Plugins.kotlinKapt)
 }
+
+val publicKey: String = gradleLocalProperties(rootDir).getProperty("publicApiKey")
+val privateKey: String = gradleLocalProperties(rootDir).getProperty("privateApiKey")
 
 android {
     compileSdkVersion(AndroidSdk.compile)
@@ -18,6 +23,9 @@ android {
         multiDexEnabled  = true
 
         testInstrumentationRunner = Libraries.testRunner
+
+        buildConfigField("String", "PUBLIC_KEY", publicKey)
+        buildConfigField("String", "PRIVATE_KEY", privateKey)
     }
 
     buildTypes {
@@ -25,6 +33,13 @@ android {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+
+        named("debug").configure {
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+
+
     }
 
     sourceSets {

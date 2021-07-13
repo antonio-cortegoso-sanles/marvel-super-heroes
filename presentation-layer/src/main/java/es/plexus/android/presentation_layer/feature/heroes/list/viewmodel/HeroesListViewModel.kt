@@ -15,25 +15,31 @@ import kotlinx.coroutines.launch
 @ExperimentalCoroutinesApi
 class HeroesListViewModel(
     bridge: HeroesListDomainLayerBridge
-): BaseMvvmViewModel<HeroesListDomainLayerBridge, HeroesListState>(bridge = bridge){
+) : BaseMvvmViewModel<HeroesListDomainLayerBridge, HeroesListState>(bridge = bridge) {
 
-    fun onViewCreated(){
+    fun onViewCreated() {
+        _screenState.value = ScreenState.Loading
         viewModelScope.launch {
-            bridge.getSuperHeroesList().fold(::handleError,::handleSuccess)
+            bridge.getSuperHeroesList().fold(::handleError, ::handleListSuccess)
         }
     }
 
-    fun onSelectHero(id : Int){
+    fun onSelectHero(id: Int) {
+        _screenState.value = ScreenState.Loading
         viewModelScope.launch(Dispatchers.IO) {
-            bridge.getSuperHeroDetail(id).fold({},{})
+            bridge.fetchSuperHeroDetail(id).fold(::handleError, ::handleDetailSuccess)
         }
     }
 
-    private fun handleSuccess(response : SuperHeroesDataBo){
+    private fun handleListSuccess(response: SuperHeroesDataBo) {
         _screenState.value = ScreenState.Render(HeroesListState.LoadHeroes(response.toVo()))
     }
 
-    private fun handleError(failure : FailureBo){
+    private fun handleDetailSuccess(response: Int) {
+        _screenState.value = ScreenState.Render(HeroesListState.GoToDetail(response))
+    }
+
+    private fun handleError(failure: FailureBo) {
 
     }
 }
