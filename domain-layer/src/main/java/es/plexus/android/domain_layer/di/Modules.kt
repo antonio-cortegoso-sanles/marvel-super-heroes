@@ -15,14 +15,16 @@ val bridgeModule = module {
 
     factory<SplashDomainLayerBridge>(named(name = SPLASH_BRIDGE_TAG)) {
         SplashDomainLayerBridgeImpl(
-            fetchSuperHeroesListUc = get(named(name=FETCH_SUPER_HEROES_LIST_UC_TAG))
+            fetchSuperHeroesListUc = get(named(name=FETCH_SUPER_HEROES_LIST_UC_TAG)),
+            getSuperHeroesListUc = get(named(name=GET_SUPER_HEROES_LIST_PERSISTED_UC_TAG)),
         )
     }
 
     factory<HeroesListDomainLayerBridge>(named(name = HEROES_LIST_BRIDGE_TAG)) {
         HeroesListDomainLayerBridgeImpl(
             getSuperHeroesListUc = get(named(name=GET_SUPER_HEROES_LIST_PERSISTED_UC_TAG)),
-            getSuperHeroDetailUc = get(named(name=FETCH_SUPER_HERO_DETAIL_UC_TAG))
+            fetchSuperHeroDetailUc = get(named(name=FETCH_SUPER_HERO_DETAIL_UC_TAG)),
+            getSuperHeroDetailUc = get(named(name=GET_SUPER_HERO_DETAIL_UC_TAG))
         )
     }
 

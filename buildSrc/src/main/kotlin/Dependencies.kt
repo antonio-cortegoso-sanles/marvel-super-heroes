@@ -54,6 +54,9 @@ object Libraries {
     const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
     const val cardview = "androidx.cardview:cardview:${Versions.cardView}"
     const val dxCore = "androidx.core:core-ktx:${Versions.coreDx}"
+    const val androidxRoom = "androidx.room:room-runtime:${Versions.room}"
+    const val androidxRoomCoroutines = "androidx.room:room-ktx:${Versions.room}"
+    const val androidxRoomcompiler = "androidx.room:room-compiler:${Versions.room}"
 
     // google
     const val googleMaterial = "com.google.android.material:material:${Versions.googleMaterial}"
@@ -101,6 +104,7 @@ object Libraries {
         const val recyclerView = "1.1.0"
         const val cardView = "1.0.0"
         const val coreDx = "1.3.2"
+        const val room = "2.3.0"
 
         // 3rd party
         const val googleMaterial = "1.4.0"

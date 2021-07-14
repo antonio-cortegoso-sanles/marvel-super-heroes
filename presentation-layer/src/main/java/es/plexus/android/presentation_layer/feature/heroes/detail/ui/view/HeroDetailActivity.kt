@@ -61,13 +61,13 @@ class HeroDetailActivity : AppCompatActivity(),
 
             dataContent.tvHeroIdValue.text = data.id.toString()
             dataContent.tvHeroDescriptionValue.text = data.description
-            dataContent.tvHeroSeriesNumberValue.text = data.series.available.toString()
-            dataContent.tvHeroComicsNumberValue.text = data.comics.available.toString()
-            dataContent.tvHeroStoriesNumberValue.text = data.stories.available.toString()
-            dataContent.tvHeroEventsNumberValue.text = data.stories.available.toString()
+            dataContent.tvHeroSeriesNumberValue.text = data.seriesNumber
+            dataContent.tvHeroComicsNumberValue.text = data.comicsNumber
+            dataContent.tvHeroStoriesNumberValue.text = data.storiesNumber
+            dataContent.tvHeroEventsNumberValue.text = data.storiesNumber
 
             Glide.with(this@HeroDetailActivity)
-                .load(data.thumbnail.path)
+                .load(data.picture)
                 .into(ivHeroPic)
         }
     }

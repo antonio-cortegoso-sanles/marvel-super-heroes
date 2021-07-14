@@ -36,7 +36,7 @@ class HeroesListAdapter(
                 tvHeroDescriptionValue.text = hero.description.trim()
 
                 Glide.with(root.context)
-                    .load(hero.thumbnail.path)
+                    .load(hero.picture)
                     .circleCrop()
                     .into(ivHeroPicture)
 

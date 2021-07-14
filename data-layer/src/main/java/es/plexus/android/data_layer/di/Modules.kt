@@ -1,5 +1,6 @@
 package es.plexus.android.data_layer.di
 
+import androidx.room.Room
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -7,14 +8,17 @@ import es.plexus.android.domain_layer.DomainLayerContract
 import es.plexus.android.domain_layer.DomainLayerContract.Data.Companion.SUPER_HEROES_REPOSITORY_TAG
 import es.plexus.android.data_layer.contract.DataLayerContract
 import es.plexus.android.data_layer.contract.DataLayerContract.SuperHeroesDataSource.Companion.API_BASE_URL
-import es.plexus.android.data_layer.contract.DataLayerContract.SuperHeroesDataSource.Companion.API_DATA_SOURCE_TAG
 import es.plexus.android.data_layer.contract.DataLayerContract.SuperHeroesDataSource.Companion.API_SERVICE_TAG
-import es.plexus.android.data_layer.datasource.SuperHeroesLocalDataSource
+import es.plexus.android.data_layer.datasource.SuperHeroesPersistenceDataSource
 import es.plexus.android.data_layer.datasource.SuperHeroesRemoteDataSource
+import es.plexus.android.data_layer.db.APP_DATABASE_TAG
+import es.plexus.android.data_layer.db.DB_NAME
+import es.plexus.android.data_layer.db.HeroesDatabase
 import es.plexus.android.data_layer.repository.SuperHeroesRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -26,8 +30,8 @@ val dataSourceModule = module {
     factory<DataLayerContract.SuperHeroesDataSource.Remote> {
         SuperHeroesRemoteDataSource(apiClient = get(named(API_SERVICE_TAG)))
     }
-    factory<DataLayerContract.SuperHeroesDataSource.Local> {
-        SuperHeroesLocalDataSource()
+    factory<DataLayerContract.SuperHeroesDataSource.Persistence> {
+        SuperHeroesPersistenceDataSource(database = get(named(name = APP_DATABASE_TAG)))
     }
 }
 
@@ -69,6 +73,16 @@ val networkModule = module {
     }
 }
 
+//db
+val persistenceModule = module {
+    single(named(name = APP_DATABASE_TAG)) {
+        Room.databaseBuilder(
+            androidContext(),
+            HeroesDatabase::class.java, DB_NAME)
+            .build()
+    }
+}
+
 @ExperimentalCoroutinesApi
-val dataLayerModule = listOf(networkModule, dataSourceModule,repositoryModule)
+val dataLayerModule = listOf(networkModule, dataSourceModule,repositoryModule, persistenceModule)
 

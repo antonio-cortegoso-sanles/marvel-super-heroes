@@ -27,7 +27,7 @@ class HeroesListViewModel(
     fun onSelectHero(id: Int) {
         _screenState.value = ScreenState.Loading
         viewModelScope.launch(Dispatchers.IO) {
-            bridge.fetchSuperHeroDetail(id).fold(::handleError, ::handleDetailSuccess)
+            bridge.getSuperHeroDetail(id).fold({ handleDetailError(id)}, {handleDetailSuccess(it.id)})
         }
     }
 
@@ -37,6 +37,12 @@ class HeroesListViewModel(
 
     private fun handleDetailSuccess(response: Int) {
         _screenState.value = ScreenState.Render(HeroesListState.GoToDetail(response))
+    }
+
+    private fun handleDetailError(id : Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            bridge.fetchSuperHeroDetail(id).fold(::handleError, ::handleDetailSuccess)
+        }
     }
 
     private fun handleError(failure: FailureBo) {
