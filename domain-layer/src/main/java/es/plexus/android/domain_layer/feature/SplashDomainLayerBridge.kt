@@ -10,12 +10,18 @@ const val SPLASH_BRIDGE_TAG = "splashDomainLayerBridge"
 
 interface SplashDomainLayerBridge : BaseDomainLayerBridge {
     suspend fun fetchSuperHeroesList(): Either<FailureBo, Boolean>
+    suspend fun getSuperHeroesList(): Either<FailureBo, SuperHeroesDataBo>
 }
 
 internal class SplashDomainLayerBridgeImpl(
     private val fetchSuperHeroesListUc: DomainLayerContract.Presentation.UseCase<Nothing, Boolean>,
-) : SplashDomainLayerBridge{
+    private val getSuperHeroesListUc: DomainLayerContract.Presentation.UseCase<Nothing, SuperHeroesDataBo>,
+) : SplashDomainLayerBridge {
 
     override suspend fun fetchSuperHeroesList(): Either<FailureBo, Boolean> =
         fetchSuperHeroesListUc.run()
+
+    override suspend fun getSuperHeroesList(): Either<FailureBo, SuperHeroesDataBo> =
+        getSuperHeroesListUc.run()
+
 }

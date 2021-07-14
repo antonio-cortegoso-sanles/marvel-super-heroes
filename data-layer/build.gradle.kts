@@ -65,6 +65,7 @@ dependencies {
     
     // other modules
     implementation(project(":domain-layer"))
+
     // 3rd party libraries
     implementation(Libraries.koinAndroid)
     implementation(Libraries.retrofit)
@@ -73,16 +74,25 @@ dependencies {
     implementation(Libraries.moshiKotlin)
     implementation(Libraries.interceptor)
     kapt(Libraries.moshiKotlinCodegen)
+
+    //room
+    implementation(Libraries.androidxRoom)
+    implementation(Libraries.androidxRoomCoroutines)
+    kapt(Libraries.androidxRoomcompiler)
+
     // testing dependencies - Unit Test
     testImplementation(Libraries.junit)
     testImplementation(Libraries.mockitoKotlin)
     testImplementation(Libraries.kotlinCoroutinesTest)
+
     // koin testing tools
     testImplementation(Libraries.koinTest)
+
     // testing dependencies - Instrumentation Test
     androidTestImplementation(Libraries.mockitoAndroid)
     androidTestImplementation(Libraries.testRunner)
     androidTestImplementation(Libraries.testRules)
+
     // koin testing tools
     androidTestImplementation(Libraries.koinTest) {
         exclude("group", "org.mockito")

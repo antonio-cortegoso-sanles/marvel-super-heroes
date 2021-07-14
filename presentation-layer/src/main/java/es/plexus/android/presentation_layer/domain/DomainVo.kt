@@ -16,53 +16,16 @@ data class ResultsVo(
     val name: String,
     val description: String,
     val modified: String,
-    val thumbnail: ThumbnailVo,
+    val picture: String,
     val resourceURI: String,
-    val comics: ComicsVo,
-    val series: SeriesVo,
-    val stories: StoriesVo,
-    val events: EventsVo,
+    val comicsNumber: String,
+    val seriesNumber: String,
+    val storiesNumber: String,
+    val eventsNumber: String,
     val urls: List<UrlsVo>
-)
-
-data class ThumbnailVo(
-    val path: String
-)
-
-data class SeriesVo(
-    val available: Int,
-    val collectionURI: String,
-    val items: List<ItemsVo>,
-    val returned: Int
-)
-
-data class ItemsVo(
-    val resourceURI: String,
-    val name: String
-)
-
-data class ComicsVo(
-    val available: Int,
-    val collectionURI: String,
-    val items: List<ItemsVo>,
-    val returned: Int
 )
 
 data class UrlsVo(
     val type: String,
     val url: String
-)
-
-data class StoriesVo(
-    val available: Int,
-    val collectionURI: String,
-    val items: List<ItemsVo>,
-    val returned: Int
-)
-
-data class EventsVo(
-    val available: Int,
-    val collectionURI: String,
-    val items: List<ItemsVo>,
-    val returned: Int
 )

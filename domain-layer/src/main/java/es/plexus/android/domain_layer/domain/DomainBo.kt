@@ -1,5 +1,8 @@
 package es.plexus.android.domain_layer.domain
 
+const val DEFAULT_STRING: String = ""
+const val DEFAULT_INT: Int = 0
+
 sealed class FailureBo {
     object Unauthorized : FailureBo()
     object NoNetwork : FailureBo()
@@ -15,54 +18,17 @@ data class ResultsBo(
     val id: Int,
     val name: String,
     val description: String,
-    val modified: String,
-    val thumbnail: ThumbnailBo,
-    val resourceURI: String,
-    val comics: ComicsBo,
-    val series: SeriesBo,
-    val stories: StoriesBo,
-    val events: EventsBo,
-    val urls: List<UrlsBo>
-)
-
-data class ThumbnailBo(
-    val path: String, val extension: String
-)
-
-data class SeriesBo(
-    val available: Int,
-    val collectionURI: String,
-    val items: List<ItemsBo>,
-    val returned: Int
-)
-
-data class ItemsBo(
-    val resourceURI: String,
-    val name: String
-)
-
-data class ComicsBo(
-    val available: Int,
-    val collectionURI: String,
-    val items: List<ItemsBo>,
-    val returned: Int
+    val modified: String = DEFAULT_STRING,
+    val picture: String = DEFAULT_STRING,
+    val resourceURI: String = DEFAULT_STRING,
+    val comicsNumber: String = DEFAULT_STRING,
+    val seriesNumber: String = DEFAULT_STRING,
+    val storiesNumber: String = DEFAULT_STRING,
+    val eventsNumber: String = DEFAULT_STRING,
+    val urls: List<UrlsBo> = emptyList()
 )
 
 data class UrlsBo(
-    val type: String,
-    val url: String
-)
-
-data class StoriesBo(
-    val available: Int,
-    val collectionURI: String,
-    val items: List<ItemsBo>,
-    val returned: Int
-)
-
-data class EventsBo(
-    val available: Int,
-    val collectionURI: String,
-    val items: List<ItemsBo>,
-    val returned: Int
+    val type: String = DEFAULT_STRING,
+    val url: String = DEFAULT_STRING
 )

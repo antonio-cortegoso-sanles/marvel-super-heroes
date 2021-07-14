@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import es.plexus.android.domain_layer.feature.HeroDetailDomainLayerBridge
+import es.plexus.android.presentation_layer.R
 import es.plexus.android.presentation_layer.base.BaseMvvmView
 import es.plexus.android.presentation_layer.base.ScreenState
 import es.plexus.android.presentation_layer.databinding.ActivityHeroDetailBinding
@@ -61,13 +62,15 @@ class HeroDetailActivity : AppCompatActivity(),
 
             dataContent.tvHeroIdValue.text = data.id.toString()
             dataContent.tvHeroDescriptionValue.text = data.description
-            dataContent.tvHeroSeriesNumberValue.text = data.series.available.toString()
-            dataContent.tvHeroComicsNumberValue.text = data.comics.available.toString()
-            dataContent.tvHeroStoriesNumberValue.text = data.stories.available.toString()
-            dataContent.tvHeroEventsNumberValue.text = data.stories.available.toString()
+            dataContent.tvHeroSeriesNumberValue.text = data.seriesNumber
+            dataContent.tvHeroComicsNumberValue.text = data.comicsNumber
+            dataContent.tvHeroStoriesNumberValue.text = data.storiesNumber
+            dataContent.tvHeroEventsNumberValue.text = data.storiesNumber
 
             Glide.with(this@HeroDetailActivity)
-                .load(data.thumbnail.path)
+                .load(data.picture)
+                .placeholder(R.drawable.hydra_placerholder)
+                .error(R.drawable.hydra_placerholder)
                 .into(ivHeroPic)
         }
     }

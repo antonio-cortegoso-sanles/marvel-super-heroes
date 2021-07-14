@@ -1,11 +1,13 @@
 package es.plexus.android.data_layer.domain
 
+import es.plexus.android.data_layer.db.HeroDetailEntity
+import es.plexus.android.data_layer.db.HeroEntity
 import es.plexus.android.domain_layer.domain.*
 
-fun SuperHeroesDto.toBo() : SuperHeroesDataBo =
-    SuperHeroesDataBo(this.data.results.map { it.toBo() } )
+fun SuperHeroesDto.toBo(): SuperHeroesDataBo =
+    SuperHeroesDataBo(this.data.results.map { it.toBo() })
 
-fun SuperHeroesDataDto.toBo() : SuperHeroesDataBo =
+fun SuperHeroesDataDto.toBo(): SuperHeroesDataBo =
     SuperHeroesDataBo(this.results.map { it.toBo() })
 
 fun ResultsDto.toBo(): ResultsBo =
@@ -16,30 +18,72 @@ fun ResultsDto.toBo(): ResultsBo =
         this.modified,
         this.thumbnail.toBo(),
         this.resourceURI,
-        this.comics.toBo(),
-        this.series.toBo(),
-        this.stories.toBo(),
-        this.events.toBo(),
+        this.comics.available.toString(),
+        this.series.available.toString(),
+        this.stories.available.toString(),
+        this.events.available.toString(),
         this.urls.map { it.toBo() }
     )
 
-fun ThumbnailDto.toBo(): ThumbnailBo =
-    ThumbnailBo(this.path, this.extension)
-
-fun SeriesDto.toBo(): SeriesBo =
-    SeriesBo(this.available, this.collectionURI, this.items.map { it.toBo() }, this.returned)
-
-fun ItemsDto.toBo(): ItemsBo =
-    ItemsBo(this.resourceURI, this.name)
-
-fun ComicsDto.toBo(): ComicsBo =
-    ComicsBo(this.available, this.collectionURI, this.items.map { it.toBo() }, this.returned)
+fun ThumbnailDto.toBo(): String = this.path + "." + this.extension
 
 fun UrlsDto.toBo(): UrlsBo =
     UrlsBo(this.type, this.url)
 
-fun StoriesDto.toBo(): StoriesBo =
-    StoriesBo(this.available, this.collectionURI, this.items.map { it.toBo() }, this.returned)
+fun SuperHeroesDataBo.toEntityList(): ArrayList<HeroEntity> {
+    val entities = arrayListOf<HeroEntity>()
 
-fun EventsDto.toBo(): EventsBo =
-    EventsBo(this.available, this.collectionURI, this.items.map { it.toBo() }, this.returned)
+    this.results.forEach { result ->
+        entities.add(
+            HeroEntity(
+                result.id,
+                result.name,
+                result.description,
+                result.picture
+            )
+        )
+    }
+    return entities
+}
+
+fun ResultsBo.toEntity(): HeroDetailEntity =
+    HeroDetailEntity(
+        this.id,
+        this.name,
+        this.description,
+        this.seriesNumber,
+        this.comicsNumber,
+        this.storiesNumber,
+        this.eventsNumber,
+        this.picture,
+        this.modified
+    )
+
+
+fun List<HeroEntity>.toBo(): SuperHeroesDataBo {
+    val results = arrayListOf<ResultsBo>()
+    this.forEach { hero ->
+        results.add(
+            ResultsBo(
+                id = hero.heroId,
+                name = hero.heroName,
+                description = hero.heroDescription,
+                picture = hero.heroPicture
+            )
+        )
+    }
+    return SuperHeroesDataBo(results)
+}
+
+fun HeroDetailEntity.toBo(): ResultsBo =
+    ResultsBo(
+        id = this.heroId,
+        name = this.heroName,
+        description = this.heroDescription,
+        modified = this.lastUpdate,
+        picture = this.heroPicture,
+        comicsNumber = this.comicsNumber,
+        seriesNumber = this.seriesNumber,
+        storiesNumber = this.storiesNumber,
+        eventsNumber = this.eventsNumber
+    )

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import es.plexus.android.presentation_layer.R
 import es.plexus.android.presentation_layer.databinding.ItemHeroBinding
 import es.plexus.android.presentation_layer.domain.ResultsVo
 
@@ -36,7 +37,9 @@ class HeroesListAdapter(
                 tvHeroDescriptionValue.text = hero.description.trim()
 
                 Glide.with(root.context)
-                    .load(hero.thumbnail.path)
+                    .load(hero.picture)
+                    .placeholder(R.drawable.hydra_placerholder)
+                    .error(R.drawable.hydra_placerholder)
                     .circleCrop()
                     .into(ivHeroPicture)
 
