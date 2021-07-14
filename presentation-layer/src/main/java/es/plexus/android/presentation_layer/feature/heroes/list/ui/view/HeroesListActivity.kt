@@ -6,11 +6,13 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import es.plexus.android.domain_layer.domain.FailureBo
 import es.plexus.android.domain_layer.feature.HeroesListDomainLayerBridge
 import es.plexus.android.presentation_layer.base.BaseMvvmView
 import es.plexus.android.presentation_layer.base.ScreenState
 import es.plexus.android.presentation_layer.databinding.ActivityHeroesListBinding
 import es.plexus.android.presentation_layer.domain.SuperHeroesDataVo
+import es.plexus.android.presentation_layer.feature.common.ui.ErrorDialogFragment
 import es.plexus.android.presentation_layer.feature.heroes.detail.ui.view.HeroDetailActivity
 import es.plexus.android.presentation_layer.feature.heroes.detail.ui.view.HeroDetailActivity.Companion.EXTRA_ID_HERO_KEY
 import es.plexus.android.presentation_layer.feature.heroes.list.ui.adapter.HeroesListAdapter
@@ -45,6 +47,7 @@ class HeroesListActivity : AppCompatActivity(),
             is HeroesListState.GoToDetail -> {
                 goToDetail(renderState.id)
             }
+            is HeroesListState.ShowError -> showError(renderState.failure)
         }
     }
 
@@ -81,6 +84,14 @@ class HeroesListActivity : AppCompatActivity(),
 
     private fun manageLoading(visibilityValue: Int) {
         viewBinding.lavLoading.visibility = visibilityValue
+    }
+
+    private fun showError(failure: FailureBo) {
+        ErrorDialogFragment({}, failure.message).show(
+            this.supportFragmentManager,
+            ErrorDialogFragment::javaClass.name
+        )
+        manageLoading(View.GONE)
     }
 
 

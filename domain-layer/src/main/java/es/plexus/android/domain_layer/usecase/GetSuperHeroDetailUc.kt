@@ -15,6 +15,6 @@ class GetSuperHeroDetailUc(
     override suspend fun run(params: Int?): Either<FailureBo, ResultsBo> =
         params?.let { id ->
             superHeroesRepository.getSuperHeroesDetailPersistedData(id)
-        } ?: FailureBo.NoData.left()
+        } ?: FailureBo.NoData().left()
 
 }

@@ -1,14 +1,5 @@
 package es.plexus.android.presentation_layer.domain
 
-sealed class FailureBo {
-    object Unauthorized : FailureBo()
-    object NoNetwork : FailureBo()
-    object Unknown : FailureBo()
-    object NoData : FailureBo()
-    object Request : FailureBo()
-    class Exception(val type: String?, val message: String?) : FailureBo()
-}
-
 data class SuperHeroesDataVo(val results: List<ResultsVo>)
 
 data class ResultsVo(

@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit
 //datasource
 val dataSourceModule = module {
     factory<DataLayerContract.SuperHeroesDataSource.Remote> {
-        SuperHeroesRemoteDataSource(apiClient = get(named(API_SERVICE_TAG)))
+        SuperHeroesRemoteDataSource(apiClient = get(named(API_SERVICE_TAG)),context = get())
     }
     factory<DataLayerContract.SuperHeroesDataSource.Persistence> {
         SuperHeroesPersistenceDataSource(database = get(named(name = APP_DATABASE_TAG)))

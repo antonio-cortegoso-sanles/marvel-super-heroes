@@ -46,7 +46,7 @@ class SuperHeroesRepository(
                 return it.toBo().right()
             }
         }
-        return FailureBo.NoData.left()
+        return FailureBo.NoData().left()
 
     }
 }

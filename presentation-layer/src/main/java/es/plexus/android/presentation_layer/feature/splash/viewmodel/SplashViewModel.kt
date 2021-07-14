@@ -16,7 +16,7 @@ class SplashViewModel(bridge: SplashDomainLayerBridge) :
 
     fun onViewCreated() {
         viewModelScope.launch {
-            bridge.getSuperHeroesList().fold(::handleError, ::handleSuccessGet)
+            bridge.getSuperHeroesList().fold({}, ::handleSuccessGet)
         }
     }
 
@@ -35,6 +35,6 @@ class SplashViewModel(bridge: SplashDomainLayerBridge) :
     }
 
     private fun handleError(failure: FailureBo) {
-
+        _screenState.value = ScreenState.Render(SplashState.ShowError(failure))
     }
 }

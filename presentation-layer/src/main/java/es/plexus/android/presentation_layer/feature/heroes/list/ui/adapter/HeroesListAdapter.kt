@@ -38,8 +38,8 @@ class HeroesListAdapter(
 
                 Glide.with(root.context)
                     .load(hero.picture)
-                    .placeholder(R.drawable.hydra_placerholder)
-                    .error(R.drawable.hydra_placerholder)
+                    .placeholder(R.drawable.hydra_place_holder)
+                    .error(R.drawable.hydra_place_holder)
                     .circleCrop()
                     .into(ivHeroPicture)
 

@@ -1,15 +1,25 @@
 package es.plexus.android.domain_layer.domain
 
 const val DEFAULT_STRING: String = ""
-const val DEFAULT_INT: Int = 0
+const val DEFAULT_INTEGER: Int = -1
 
-sealed class FailureBo {
-    object Unauthorized : FailureBo()
-    object NoNetwork : FailureBo()
-    object Unknown : FailureBo()
-    object NoData : FailureBo()
-    object Request : FailureBo()
-    class Exception(val type: String?, val message: String?) : FailureBo()
+sealed class FailureBo(val message: String, val code: Int) {
+
+    class Unauthorized(message: String = DEFAULT_STRING, code: Int = DEFAULT_INTEGER) :
+        FailureBo(message, code)
+
+    class Request(message: String = DEFAULT_STRING, code: Int = DEFAULT_INTEGER) :
+        FailureBo(message, code)
+
+    class NoNetwork(message: String = DEFAULT_STRING, code: Int = DEFAULT_INTEGER) :
+        FailureBo(message, code)
+
+    class Unknown(message: String = DEFAULT_STRING, code: Int = DEFAULT_INTEGER) :
+        FailureBo(message, code)
+
+    class NoData(message: String = DEFAULT_STRING, code: Int = DEFAULT_INTEGER) :
+        FailureBo(message, code)
+
 }
 
 data class SuperHeroesDataBo(val results: List<ResultsBo>)

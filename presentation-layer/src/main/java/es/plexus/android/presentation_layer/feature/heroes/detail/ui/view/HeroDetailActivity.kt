@@ -69,8 +69,8 @@ class HeroDetailActivity : AppCompatActivity(),
 
             Glide.with(this@HeroDetailActivity)
                 .load(data.picture)
-                .placeholder(R.drawable.hydra_placerholder)
-                .error(R.drawable.hydra_placerholder)
+                .placeholder(R.drawable.hydra_place_holder)
+                .error(R.drawable.hydra_place_holder)
                 .into(ivHeroPic)
         }
     }

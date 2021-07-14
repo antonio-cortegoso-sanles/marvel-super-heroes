@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     tools:context=".feature.heroes.list.ui.view.HeroesListActivity">
 
 
@@ -11,6 +12,7 @@
         android:id="@+id/rvHeroesList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layoutAnimation="@anim/list_animation"
         android:visibility="gone"/>
 
     <com.airbnb.lottie.LottieAnimationView
