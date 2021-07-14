@@ -27,6 +27,6 @@ interface HeroesDao {
     suspend fun getHeroesList(): List<HeroEntity>
 
     @Query("SELECT * FROM " + HeroDetailEntity.TABLE_NAME + " WHERE id = :heroId")
-    suspend fun getHeroDetail(heroId: Int): HeroDetailEntity
+    suspend fun getHeroDetail(heroId: Int): HeroDetailEntity?
 
 }

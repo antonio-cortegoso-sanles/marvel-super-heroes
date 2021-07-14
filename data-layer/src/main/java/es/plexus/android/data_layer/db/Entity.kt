@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull
 @Entity(tableName = HeroEntity.TABLE_NAME)
 data class HeroEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = HERO_ID) val heroId: Int,
+    @ColumnInfo(name = HERO_ID) @NotNull val heroId: Int,
     @ColumnInfo(name = HERO_NAME) @NotNull val heroName: String,
     @ColumnInfo(name = HERO_DESCRIPTION) @NotNull val heroDescription: String,
     @ColumnInfo(name = HERO_PICTURE) @NotNull val heroPicture: String
@@ -25,7 +25,7 @@ data class HeroEntity(
 @Entity(tableName = HeroDetailEntity.TABLE_NAME)
 data class HeroDetailEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = HERO_ID) val heroId: Int,
+    @ColumnInfo(name = HERO_ID) @NotNull val heroId: Int,
     @ColumnInfo(name = HERO_NAME) @NotNull val heroName: String,
     @ColumnInfo(name = HERO_DESCRIPTION) @NotNull val heroDescription: String,
     @ColumnInfo(name = SERIES_NUMBER) @NotNull val seriesNumber: String,

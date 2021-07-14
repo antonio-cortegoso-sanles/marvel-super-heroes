@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import es.plexus.android.domain_layer.feature.HeroDetailDomainLayerBridge
+import es.plexus.android.presentation_layer.R
 import es.plexus.android.presentation_layer.base.BaseMvvmView
 import es.plexus.android.presentation_layer.base.ScreenState
 import es.plexus.android.presentation_layer.databinding.ActivityHeroDetailBinding
@@ -68,6 +69,8 @@ class HeroDetailActivity : AppCompatActivity(),
 
             Glide.with(this@HeroDetailActivity)
                 .load(data.picture)
+                .placeholder(R.drawable.hydra_placerholder)
+                .error(R.drawable.hydra_placerholder)
                 .into(ivHeroPic)
         }
     }

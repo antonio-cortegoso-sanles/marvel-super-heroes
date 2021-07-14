@@ -2,6 +2,7 @@ package es.plexus.android.data_layer.repository
 
 import arrow.core.Either
 import arrow.core.flatMap
+import arrow.core.left
 import arrow.core.right
 import es.plexus.android.domain_layer.DomainLayerContract
 import es.plexus.android.data_layer.contract.DataLayerContract
@@ -38,8 +39,14 @@ class SuperHeroesRepository(
             response.toBo().right()
         }
 
-    override suspend fun getSuperHeroesDetailPersistedData(id: Int): Either<FailureBo, ResultsBo> =
-        persistenceDataSource.getSuperHeroDetailData(id).flatMap { response ->
-            response.toBo().right()
+    override suspend fun getSuperHeroesDetailPersistedData(id: Int): Either<FailureBo, ResultsBo> {
+        val response = persistenceDataSource.getSuperHeroDetailData(id)
+        if (response.isRight()) {
+            response.map {
+                return it.toBo().right()
+            }
         }
+        return FailureBo.NoData.left()
+
+    }
 }

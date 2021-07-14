@@ -31,5 +31,5 @@ class SuperHeroesPersistenceDataSource(
         database.appDao().getHeroesList().right()
 
     override suspend fun getSuperHeroDetailData(id: Int): Either<FailureBo, HeroDetailEntity> =
-        database.appDao().getHeroDetail(id).right()
+        database.appDao().getHeroDetail(id)?.right() ?: FailureBo.NoData.left()
 }
