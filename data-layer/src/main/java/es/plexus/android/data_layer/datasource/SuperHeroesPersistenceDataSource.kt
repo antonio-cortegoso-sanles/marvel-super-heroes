@@ -7,9 +7,9 @@ import es.plexus.android.data_layer.contract.DataLayerContract
 import es.plexus.android.data_layer.db.HeroDetailEntity
 import es.plexus.android.data_layer.db.HeroEntity
 import es.plexus.android.data_layer.db.HeroesDatabase
+import es.plexus.android.data_layer.domain.FailureDto
+import es.plexus.android.data_layer.domain.dtoToBoFailure
 import es.plexus.android.domain_layer.domain.FailureBo
-import es.plexus.android.domain_layer.domain.ResultsBo
-import es.plexus.android.domain_layer.domain.SuperHeroesDataBo
 
 class SuperHeroesPersistenceDataSource(
     private val database: HeroesDatabase
@@ -31,5 +31,5 @@ class SuperHeroesPersistenceDataSource(
         database.appDao().getHeroesList().right()
 
     override suspend fun getSuperHeroDetailData(id: Int): Either<FailureBo, HeroDetailEntity> =
-        database.appDao().getHeroDetail(id)?.right() ?: FailureBo.NoData.left()
+        database.appDao().getHeroDetail(id)?.right() ?: FailureDto.NoData.dtoToBoFailure().left()
 }

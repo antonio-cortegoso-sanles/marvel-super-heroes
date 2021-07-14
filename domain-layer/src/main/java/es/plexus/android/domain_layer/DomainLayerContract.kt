@@ -22,31 +22,6 @@ interface DomainLayerContract {
 
             suspend fun run(params: T? = null): Either<FailureBo, S>
         }
-
-        interface FlowUseCase<in T, out S> {
-            var job: Job
-            fun invoke(
-                scope: CoroutineScope,
-                params: T? = null,
-                onResult: (Either<FailureBo, S>) -> Unit,
-                dispatcherWorker: CoroutineDispatcher = Dispatchers.IO
-            ) {
-                job = scope.launch {
-                    withContext(dispatcherWorker) {
-                        run(params)
-                    }.collect { result ->
-                        onResult(result)
-                    }
-                }
-            }
-
-            fun cancel() {
-                job.cancel()
-            }
-
-            suspend fun run(params: T? = null): Flow<Either<FailureBo, S>>
-        }
-
     }
 
     interface Data {
@@ -59,8 +34,8 @@ interface DomainLayerContract {
             suspend fun fetchSuperHeroesListData(): Either<FailureBo, Boolean>
             suspend fun fetchSuperHeroDetailData(id: Int): Either<FailureBo, Int>
 
-            suspend fun saveSuperHeroesListData(data : SuperHeroesDataBo): Either<FailureBo, Boolean>
-            suspend fun saveSuperHeroesDetailData(data : ResultsBo): Either<FailureBo, Int>
+            suspend fun saveSuperHeroesListData(data: SuperHeroesDataBo): Either<FailureBo, Boolean>
+            suspend fun saveSuperHeroesDetailData(data: ResultsBo): Either<FailureBo, Int>
 
             suspend fun getSuperHeroesListPersistedData(): Either<FailureBo, SuperHeroesDataBo>
             suspend fun getSuperHeroesDetailPersistedData(id: Int): Either<FailureBo, ResultsBo>

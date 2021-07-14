@@ -12,6 +12,7 @@ abstract class BaseMvvmViewModel<T : BaseDomainLayerBridge, S : BaseState>(prote
     ViewModel() {
 
     protected val _screenState: MutableStateFlow<ScreenState<S>> by lazy { MutableStateFlow(ScreenState.Idle) }
+
     val screenState: StateFlow<ScreenState<S>>
         get() {
             return _screenState

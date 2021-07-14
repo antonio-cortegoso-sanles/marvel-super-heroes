@@ -2,13 +2,24 @@ package es.plexus.android.data_layer.domain
 
 import com.squareup.moshi.Json
 
-sealed class FailureDto {
-    object Unauthorized : FailureDto()
-    object NoNetwork : FailureDto()
-    object Unknown : FailureDto()
-    object NoData : FailureDto()
-    object Request : FailureDto()
-    class Exception(val type: String?, val message: String?) : FailureDto()
+
+const val NO_NETWORK_CODE = 500
+const val UNKNOWN_CODE = -1
+const val DEFAULT_MESSAGE: String = ""
+const val UNKNOWN_ERROR_MSG = "Unknown Error"
+const val NO_NETWORK_MSG = "No network available"
+const val NO_DATA_MSG = "No data available"
+
+sealed class FailureDto(val message: String, val code: Int) {
+
+    class Unauthorized(message: String = DEFAULT_MESSAGE, code: Int = UNKNOWN_CODE) :
+        FailureDto(message, code)
+
+    class Request(message: String, code: Int) : FailureDto(message, code)
+    object NoNetwork : FailureDto(NO_NETWORK_MSG, NO_NETWORK_CODE)
+    object Unknown : FailureDto(UNKNOWN_ERROR_MSG, UNKNOWN_CODE)
+    object NoData : FailureDto(NO_DATA_MSG, UNKNOWN_CODE)
+
 }
 
 data class SuperHeroesDto(

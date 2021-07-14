@@ -14,6 +14,9 @@ import es.plexus.android.data_layer.datasource.SuperHeroesRemoteDataSource
 import es.plexus.android.data_layer.db.APP_DATABASE_TAG
 import es.plexus.android.data_layer.db.DB_NAME
 import es.plexus.android.data_layer.db.HeroesDatabase
+import es.plexus.android.data_layer.networkmanager.NetworkManager
+import es.plexus.android.data_layer.networkmanager.NetworkManager.Companion.NETWORK_MANAGER_TAG
+import es.plexus.android.data_layer.networkmanager.NetworkManagerImpl
 import es.plexus.android.data_layer.repository.SuperHeroesRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import okhttp3.OkHttpClient
@@ -28,10 +31,14 @@ import java.util.concurrent.TimeUnit
 //datasource
 val dataSourceModule = module {
     factory<DataLayerContract.SuperHeroesDataSource.Remote> {
-        SuperHeroesRemoteDataSource(apiClient = get(named(API_SERVICE_TAG)))
+        SuperHeroesRemoteDataSource(apiClient = get(named(API_SERVICE_TAG)),context = get(),networkManager = get(named(NETWORK_MANAGER_TAG)))
     }
     factory<DataLayerContract.SuperHeroesDataSource.Persistence> {
         SuperHeroesPersistenceDataSource(database = get(named(name = APP_DATABASE_TAG)))
+    }
+
+    factory<NetworkManager>(named(NETWORK_MANAGER_TAG)) {
+        NetworkManagerImpl(context = androidContext())
     }
 }
 

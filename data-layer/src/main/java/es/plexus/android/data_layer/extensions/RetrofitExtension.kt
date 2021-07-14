@@ -58,7 +58,7 @@ fun <T, R> Response<T>.safeCall(
 
 fun <T> Response<T>?.handleDataSourceError(): Either<FailureBo, Nothing> =
     when (this?.code()) {
-        in 400..499 -> FailureDto.Request
-        in 500..599 -> FailureDto.Request
+        in 400..408 -> FailureDto.Unauthorized(this?.message()?:"",this?.code()?:400)
+        409 -> FailureDto.Request(this.message(),this.code())
         else -> FailureDto.Unknown
     }.dtoToBoFailure().left()
