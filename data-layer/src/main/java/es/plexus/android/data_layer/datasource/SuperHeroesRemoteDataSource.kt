@@ -8,8 +8,8 @@ import es.plexus.android.data_layer.contract.DataLayerContract
 import es.plexus.android.data_layer.domain.FailureDto
 import es.plexus.android.data_layer.domain.dtoToBoFailure
 import es.plexus.android.data_layer.domain.toBo
-import es.plexus.android.data_layer.extensions.isNetworkAvailable
 import es.plexus.android.data_layer.extensions.safeCall
+import es.plexus.android.data_layer.networkmanager.NetworkManager
 import es.plexus.android.data_layer.services.MarvelSuperHeroesApiService
 import es.plexus.android.domain_layer.domain.FailureBo
 import es.plexus.android.domain_layer.domain.SuperHeroesDataBo
@@ -20,15 +20,18 @@ import java.util.*
 
 class SuperHeroesRemoteDataSource(
     private val apiClient: Retrofit,
-    private val context: Context
+    private val context: Context,
+    private val networkManager: NetworkManager
 ) : DataLayerContract.SuperHeroesDataSource.Remote {
 
     private val publicToken = BuildConfig.PUBLIC_KEY
     private val privateToken = BuildConfig.PRIVATE_KEY
     private val ts = Date().time.toString()
 
+    //private lateinit var xd : NetworkManager
+
     override suspend fun fetchSuperHeroesListData(): Either<FailureBo, SuperHeroesDataBo> =
-        if (context.isNetworkAvailable()) {
+        if (networkManager.isNetworkAvailable()) {
             try {
                 apiClient.create(MarvelSuperHeroesApiService::class.java)
                     .getSuperHeroesList(ts, publicToken, getHash(ts + privateToken + publicToken))
@@ -43,7 +46,7 @@ class SuperHeroesRemoteDataSource(
         }
 
     override suspend fun fetchSuperHeroDetailData(id: Int): Either<FailureBo, SuperHeroesDataBo> =
-        if (context.isNetworkAvailable()) {
+        if (networkManager.isNetworkAvailable()) {
             try {
                 apiClient.create(MarvelSuperHeroesApiService::class.java)
                     .getSuperHeroDetail(
