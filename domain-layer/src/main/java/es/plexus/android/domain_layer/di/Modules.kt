@@ -24,13 +24,13 @@ val bridgeModule = module {
         HeroesListDomainLayerBridgeImpl(
             getSuperHeroesListUc = get(named(name=GET_SUPER_HEROES_LIST_PERSISTED_UC_TAG)),
             fetchSuperHeroDetailUc = get(named(name=FETCH_SUPER_HERO_DETAIL_UC_TAG)),
-            getSuperHeroDetailUc = get(named(name=GET_SUPER_HERO_DETAIL_UC_TAG))
+            getSuperHeroDetailUc = get(named(name=GET_SUPER_HERO_DETAIL_PERSISTED_UC_TAG))
         )
     }
 
     factory<HeroDetailDomainLayerBridge>(named(name = HERO_DETAIL_BRIDGE_TAG)) {
         HeroDetailDomainLayerBridgeImpl(
-            getSuperHeroDetailUc = get(named(name=GET_SUPER_HERO_DETAIL_UC_TAG))
+            getSuperHeroDetailUc = get(named(name=GET_SUPER_HERO_DETAIL_PERSISTED_UC_TAG))
         )
     }
 }
@@ -49,7 +49,7 @@ val useCaseModule = module {
         GetSuperHeroesListPersistedDataUc(superHeroesRepository = get(named(name = SUPER_HEROES_REPOSITORY_TAG)))
     }
 
-    factory<DomainLayerContract.Presentation.UseCase<Int, ResultsBo>>(named(name = GET_SUPER_HERO_DETAIL_UC_TAG)) {
+    factory<DomainLayerContract.Presentation.UseCase<Int, ResultsBo>>(named(name = GET_SUPER_HERO_DETAIL_PERSISTED_UC_TAG)) {
         GetSuperHeroDetailUc(superHeroesRepository = get(named(name = SUPER_HEROES_REPOSITORY_TAG)))
     }
 
