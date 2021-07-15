@@ -4,13 +4,28 @@
 
 Marvel Heroes Android app is a list and detail example using https://developer.marvel.com/docs API.
 
-This app is coded in Kotlin using Clean Architecture, Corutines, Koin, MVVM and Room DB.
+This app is coded in Kotlin using Clean Architecture (MVVM).
 
 By the fisrt, Splash View consults local DB, if there is no data saved then fetch heroes data from Marvel API and save it in DB.
 
 Next step, Heroes List View shows DB saved data and when user clicks in a hero the app does the same step that Splash View. Consulting to DB if there is the selected hero data and if not fetch from Marvel API for saving that.
 
 Last step, Detail View shows the selected hero data.
+
+## Libraries and Tools Used
+
+- Kotlin
+- AndroidX
+    - RecyclerView
+- Material Components
+- Android Architecture Components
+    - Lifecycle and ViewModel
+- Retrofit
+- Moshi
+- Kotlin Coroutines
+- Glide
+- Koin
+- Room DB
 
 ## Installation
 
@@ -44,8 +59,13 @@ In order to facilitate the interaction between layers this app uses **[Koin](htt
 ### Coroutines
 Since _multithreading_ has historically been a challenge in Android Development, the team has decided to include [coroutines](https://codelabs.developers.google.com/codelabs/kotlin-coroutines/#0). This is one of the most interesting and appealing features recently introduced in Kotlin.
 
-
 The main advantage that supports the usage of _coroutines_ is an easy and enhanced multithreading management. _Coroutines_  allow to turn asynchronous operations in synchronous code, without affecting the application overall performance.
 
 From the _execution-flow_ perspective, every task is undertaken in the main thread (UI thread), until a _use-case_ is invoked. From that moment onwards, operations are handled in worker threads, to later retrieve the computed results in the main thread again.
+
+### Database
+One of the objectives of this app is that it can be used offline.
+
+For this reason, a Room database is used to store all the data to be displayed as they are consulted. Room provides an abstraction layer on top of SQLite that enables seamless database access while harnessing the full power of SQLite.
+
 
