@@ -20,15 +20,12 @@ import java.util.*
 
 class SuperHeroesRemoteDataSource(
     private val apiClient: Retrofit,
-    private val context: Context,
     private val networkManager: NetworkManager
 ) : DataLayerContract.SuperHeroesDataSource.Remote {
 
     private val publicToken = BuildConfig.PUBLIC_KEY
     private val privateToken = BuildConfig.PRIVATE_KEY
     private val ts = Date().time.toString()
-
-    //private lateinit var xd : NetworkManager
 
     override suspend fun fetchSuperHeroesListData(): Either<FailureBo, SuperHeroesDataBo> =
         if (networkManager.isNetworkAvailable()) {
