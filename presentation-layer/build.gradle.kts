@@ -88,6 +88,4 @@ dependencies {
         exclude("group", "org.mockito")
         exclude("group", "mockito-inline")
     }
-
-    implementation(kotlin("reflect"))
 }
