@@ -31,7 +31,10 @@ import java.util.concurrent.TimeUnit
 //datasource
 val dataSourceModule = module {
     factory<DataLayerContract.SuperHeroesDataSource.Remote> {
-        SuperHeroesRemoteDataSource(apiClient = get(named(API_SERVICE_TAG)),context = get(),networkManager = get(named(NETWORK_MANAGER_TAG)))
+        SuperHeroesRemoteDataSource(
+            apiClient = get(named(API_SERVICE_TAG)),
+            networkManager = get(named(NETWORK_MANAGER_TAG))
+        )
     }
     factory<DataLayerContract.SuperHeroesDataSource.Persistence> {
         SuperHeroesPersistenceDataSource(database = get(named(name = APP_DATABASE_TAG)))
@@ -85,11 +88,12 @@ val persistenceModule = module {
     single(named(name = APP_DATABASE_TAG)) {
         Room.databaseBuilder(
             androidContext(),
-            HeroesDatabase::class.java, DB_NAME)
+            HeroesDatabase::class.java, DB_NAME
+        )
             .build()
     }
 }
 
 @ExperimentalCoroutinesApi
-val dataLayerModule = listOf(networkModule, dataSourceModule,repositoryModule, persistenceModule)
+val dataLayerModule = listOf(networkModule, dataSourceModule, repositoryModule, persistenceModule)
 
