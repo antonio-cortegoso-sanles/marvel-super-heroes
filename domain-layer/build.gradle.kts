@@ -14,8 +14,6 @@ android {
         versionCode = CodeVersion.code
         versionName = CodeVersion.name
 
-        multiDexEnabled  = true
-
         testInstrumentationRunner = Libraries.testRunner
     }
 

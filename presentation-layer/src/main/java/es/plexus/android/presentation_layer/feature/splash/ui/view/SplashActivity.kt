@@ -1,7 +1,8 @@
 package es.plexus.android.presentation_layer.feature.splash.ui.view
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import es.plexus.android.domain_layer.domain.FailureBo
 import es.plexus.android.domain_layer.feature.SplashDomainLayerBridge
@@ -15,8 +16,7 @@ import es.plexus.android.presentation_layer.feature.splash.viewmodel.SplashViewM
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.jetbrains.anko.startActivity
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @ExperimentalCoroutinesApi
 class SplashActivity : AppCompatActivity(),
@@ -57,7 +57,7 @@ class SplashActivity : AppCompatActivity(),
     }
 
     private fun goToListActivity() {
-        startActivity<HeroesListActivity>()
+        startActivity(Intent(this, HeroesListActivity::class.java))
         finish()
     }
 

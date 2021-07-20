@@ -15,7 +15,7 @@ import es.plexus.android.presentation_layer.feature.heroes.detail.viewmodel.Hero
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @ExperimentalCoroutinesApi
 class HeroDetailActivity : AppCompatActivity(),

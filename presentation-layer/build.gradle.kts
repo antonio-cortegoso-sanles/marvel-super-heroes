@@ -16,8 +16,6 @@ android {
         versionCode = CodeVersion.code
         versionName = CodeVersion.name
 
-        multiDexEnabled  = true
-
         testInstrumentationRunner = Libraries.testRunner
     }
 
@@ -52,21 +50,19 @@ android {
 dependencies {
 
     implementation(Libraries.kotlinStdLib)
-    implementation(Libraries.anko)
-    implementation(Libraries.ankoDesign)
     implementation(Libraries.appCompat)
     implementation(Libraries.lifecycle)
     implementation(Libraries.viewModelKtx)
     implementation(Libraries.constraintLayout)
     implementation(Libraries.recyclerview)
     implementation(Libraries.cardview)
+    implementation(Libraries.googleMaterial)
 
     // other modules
     implementation(project(":domain-layer"))
 
     // 3rd party libraries
     implementation(Libraries.koinAndroid)
-    implementation(Libraries.koinViewmodel)
     implementation(Libraries.lottie)
     implementation(Libraries.glide)
 

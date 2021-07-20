@@ -7,7 +7,7 @@ import es.plexus.android.presentation_layer.feature.heroes.detail.viewmodel.Hero
 import es.plexus.android.presentation_layer.feature.heroes.list.viewmodel.HeroesListViewModel
 import es.plexus.android.presentation_layer.feature.splash.viewmodel.SplashViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 

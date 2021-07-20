@@ -14,7 +14,6 @@ android {
         versionCode = CodeVersion.code
         versionName = CodeVersion.name
 
-        multiDexEnabled  = true
     }
 
     signingConfigs {
@@ -49,10 +48,6 @@ android {
 
 dependencies {
     implementation(Libraries.kotlinStdLib)
-    implementation(Libraries.anko)
-    implementation(Libraries.multidex)
-    implementation(Libraries.googleMaterial)
-    implementation(Libraries.dxCore)
 
     // other modules
     implementation(project(":presentation-layer"))

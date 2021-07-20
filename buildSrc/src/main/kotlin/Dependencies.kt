@@ -1,4 +1,4 @@
-const val kotlinVersion = "1.5.0"
+const val kotlinVersion = "1.5.21"
 
 object Build {
     object Versions {
@@ -62,8 +62,7 @@ object Libraries {
     const val googleMaterial = "com.google.android.material:material:${Versions.googleMaterial}"
 
     // koin
-    const val koinAndroid = "org.koin:koin-android:${Versions.koin}"
-    const val koinViewmodel = "org.koin:koin-android-viewmodel:${Versions.koin}"
+    const val koinAndroid = "io.insert-koin:koin-android:${Versions.koin}"
 
     // retrofit
     const val retrofitCoroutinesAdapter =
@@ -85,7 +84,7 @@ object Libraries {
     const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"
     const val kotlinCoroutinesTest =
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
-    const val koinTest = "org.koin:koin-test:${Versions.koin}"
+    const val koinTest = "io.insert-koin:koin-test:${Versions.koin}"
     const val mockitoAndroid = "org.mockito:mockito-android:${Versions.mockitoAndroid}"
     const val testRunner = "androidx.test:runner:${Versions.androidxTestRunner}"
     const val testRules = "androidx.test:rules:${Versions.androidxTestRules}"
@@ -108,7 +107,7 @@ object Libraries {
 
         // 3rd party
         const val googleMaterial = "1.4.0"
-        const val koin = "2.2.0-alpha-1"
+        const val koin = "3.1.2"
         const val arrow = "0.11.0"
         const val retrofit = "2.8.1"
         const val moshi = "1.9.3"
