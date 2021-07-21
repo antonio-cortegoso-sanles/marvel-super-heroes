@@ -5,9 +5,9 @@ import arrow.core.left
 import es.plexus.android.domain_layer.DomainLayerContract
 import es.plexus.android.domain_layer.domain.FailureBo
 
-const val FETCH_SUPER_HERO_DETAIL_UC_TAG = "fetchSuperHeroDetailUc"
+const val SYNCHRONIZE_SUPER_HERO_DETAIL_UC_TAG = "synchronizeSuperHeroDetailUc"
 
-class FetchSuperHeroDetailUc(
+internal class SynchronizeSuperHeroDetailUc(
     private val superHeroesRepository: DomainLayerContract.Data.SuperHeroesRepository
 ) : DomainLayerContract.Presentation.UseCase<Int, Int> {
 

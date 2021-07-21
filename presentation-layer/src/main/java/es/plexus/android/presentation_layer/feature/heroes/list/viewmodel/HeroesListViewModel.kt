@@ -24,7 +24,7 @@ class HeroesListViewModel(
         }
     }
 
-    fun onSelectHero(id: Int) {
+    fun onClickItem(id: Int) {
         _screenState.value = ScreenState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             bridge.getSuperHeroDetail(id)
@@ -42,7 +42,7 @@ class HeroesListViewModel(
 
     private fun handleDetailError(id: Int) {
         viewModelScope.launch {
-            bridge.fetchSuperHeroDetail(id).fold(::handleError, ::handleDetailSuccess)
+            bridge.synchronizeSuperHeroDetail(id).fold(::handleError, ::handleDetailSuccess)
         }
     }
 
@@ -51,6 +51,6 @@ class HeroesListViewModel(
     }
 
     fun cleanDetailData() {
-        _screenState.value = ScreenState.Render(HeroesListState.GoToDetail(null))
+        _screenState.value = ScreenState.Idle
     }
 }

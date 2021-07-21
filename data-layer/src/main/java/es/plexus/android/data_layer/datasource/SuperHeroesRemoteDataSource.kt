@@ -1,6 +1,5 @@
 package es.plexus.android.data_layer.datasource
 
-import android.content.Context
 import arrow.core.Either
 import arrow.core.left
 import es.plexus.android.data_layer.BuildConfig
@@ -18,7 +17,7 @@ import java.math.BigInteger
 import java.security.MessageDigest
 import java.util.*
 
-class SuperHeroesRemoteDataSource(
+internal class SuperHeroesRemoteDataSource(
     private val apiClient: Retrofit,
     private val networkManager: NetworkManager
 ) : DataLayerContract.SuperHeroesDataSource.Remote {

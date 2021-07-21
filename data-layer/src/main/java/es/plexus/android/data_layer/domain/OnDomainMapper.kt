@@ -4,13 +4,10 @@ import es.plexus.android.data_layer.db.HeroDetailEntity
 import es.plexus.android.data_layer.db.HeroEntity
 import es.plexus.android.domain_layer.domain.*
 
-fun SuperHeroesDto.toBo(): SuperHeroesDataBo =
+internal fun SuperHeroesDto.toBo(): SuperHeroesDataBo =
     SuperHeroesDataBo(this.data.results.map { it.toBo() })
 
-fun SuperHeroesDataDto.toBo(): SuperHeroesDataBo =
-    SuperHeroesDataBo(this.results.map { it.toBo() })
-
-fun ResultsDto.toBo(): ResultsBo =
+internal fun ResultsDto.toBo(): ResultsBo =
     ResultsBo(
         this.id,
         this.name,
@@ -25,12 +22,12 @@ fun ResultsDto.toBo(): ResultsBo =
         this.urls.map { it.toBo() }
     )
 
-fun ThumbnailDto.toBo(): String = this.path + "." + this.extension
+internal fun ThumbnailDto.toBo(): String = this.path + "." + this.extension
 
-fun UrlsDto.toBo(): UrlsBo =
+internal fun UrlsDto.toBo(): UrlsBo =
     UrlsBo(this.type, this.url)
 
-fun SuperHeroesDataBo.toEntityList(): ArrayList<HeroEntity> {
+internal fun SuperHeroesDataBo.toEntityList(): ArrayList<HeroEntity> {
     val entities = arrayListOf<HeroEntity>()
 
     this.results.forEach { result ->
@@ -46,7 +43,7 @@ fun SuperHeroesDataBo.toEntityList(): ArrayList<HeroEntity> {
     return entities
 }
 
-fun ResultsBo.toEntity(): HeroDetailEntity =
+internal fun ResultsBo.toEntity(): HeroDetailEntity =
     HeroDetailEntity(
         this.id,
         this.name,
@@ -60,7 +57,7 @@ fun ResultsBo.toEntity(): HeroDetailEntity =
     )
 
 
-fun List<HeroEntity>.toBo(): SuperHeroesDataBo {
+internal fun List<HeroEntity>.toBo(): SuperHeroesDataBo {
     val results = arrayListOf<ResultsBo>()
     this.forEach { hero ->
         results.add(
@@ -75,7 +72,7 @@ fun List<HeroEntity>.toBo(): SuperHeroesDataBo {
     return SuperHeroesDataBo(results)
 }
 
-fun HeroDetailEntity.toBo(): ResultsBo =
+internal fun HeroDetailEntity.toBo(): ResultsBo =
     ResultsBo(
         id = this.heroId,
         name = this.heroName,

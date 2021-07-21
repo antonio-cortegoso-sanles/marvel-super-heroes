@@ -1,21 +1,20 @@
 package es.plexus.android.presentation_layer.feature.heroes.detail.ui.view
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import es.plexus.android.domain_layer.domain.FailureBo
 import es.plexus.android.domain_layer.feature.HeroDetailDomainLayerBridge
 import es.plexus.android.presentation_layer.R
 import es.plexus.android.presentation_layer.base.BaseMvvmView
 import es.plexus.android.presentation_layer.base.ScreenState
 import es.plexus.android.presentation_layer.databinding.FragmentHeroDetailBinding
 import es.plexus.android.presentation_layer.domain.ResultsVo
+import es.plexus.android.presentation_layer.feature.common.ui.ErrorDialogFragment
 import es.plexus.android.presentation_layer.feature.heroes.detail.ui.state.HeroDetailState
 import es.plexus.android.presentation_layer.feature.heroes.detail.viewmodel.HeroDetailViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -47,24 +46,13 @@ class HeroDetailFragment : Fragment(),
             viewModel.onViewCreated(HeroDetailFragmentArgs.fromBundle(args).id)
         }
     }
-/*
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        requireActivity().onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-              //  Navigation.findNavController(requireView()).navigate(R.id.action_heroDetailFragment_to_heroesListFragment)
-                Navigation.findNavController(requireView()).popBackStack()
-                //Navigation.findNavController(requireView()).navigateUp()
-            }
-        })
-    }*/
-
 
     override fun processRenderState(renderState: HeroDetailState) {
         when (renderState) {
             is HeroDetailState.LoadHero -> {
                 renderData(renderState.data)
             }
+            is HeroDetailState.ShowError -> showError(renderState.failure)
         }
     }
 
@@ -98,6 +86,14 @@ class HeroDetailFragment : Fragment(),
                     .into(ivHeroPic)
             }
         }
+    }
 
+    private fun showError(failure: FailureBo) {
+        activity?.supportFragmentManager?.let {
+            ErrorDialogFragment({}, failure.message).show(
+                it,
+                ErrorDialogFragment::javaClass.name
+            )
+        }
     }
 }

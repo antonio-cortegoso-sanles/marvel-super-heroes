@@ -51,9 +51,7 @@ class HeroesListFragment : Fragment(),
                 renderData(renderState.data)
             }
             is HeroesListState.GoToDetail -> {
-                renderState.id?.let { data ->
-                    goToDetail(data)
-                }
+                goToDetail(renderState.id)
             }
             is HeroesListState.ShowError -> showError(renderState.failure)
         }
@@ -83,7 +81,7 @@ class HeroesListFragment : Fragment(),
         with(viewBinding) {
             rvHeroesList.adapter = HeroesListAdapter(
                 data.results
-            ) { data -> viewModel.onSelectHero(data.id) }
+            ) { data -> viewModel.onClickItem(data.id) }
             rvHeroesList.layoutManager = LinearLayoutManager(activity)
             rvHeroesList.visibility = View.VISIBLE
         }

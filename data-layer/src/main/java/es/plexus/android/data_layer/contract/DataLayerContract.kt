@@ -4,7 +4,6 @@ import arrow.core.Either
 import es.plexus.android.data_layer.db.HeroDetailEntity
 import es.plexus.android.data_layer.db.HeroEntity
 import es.plexus.android.domain_layer.domain.FailureBo
-import es.plexus.android.domain_layer.domain.ResultsBo
 import es.plexus.android.domain_layer.domain.SuperHeroesDataBo
 
 interface DataLayerContract {

@@ -15,7 +15,7 @@ val bridgeModule = module {
 
     factory<SplashDomainLayerBridge>(named(name = SPLASH_BRIDGE_TAG)) {
         SplashDomainLayerBridgeImpl(
-            fetchSuperHeroesListUc = get(named(name=FETCH_SUPER_HEROES_LIST_UC_TAG)),
+            synchronizeSuperHeroesListUc = get(named(name=SYNCHRONIZE_SUPER_HEROES_LIST_UC_TAG)),
             getSuperHeroesListUc = get(named(name=GET_SUPER_HEROES_LIST_PERSISTED_UC_TAG)),
         )
     }
@@ -23,7 +23,7 @@ val bridgeModule = module {
     factory<HeroesListDomainLayerBridge>(named(name = HEROES_LIST_BRIDGE_TAG)) {
         HeroesListDomainLayerBridgeImpl(
             getSuperHeroesListUc = get(named(name=GET_SUPER_HEROES_LIST_PERSISTED_UC_TAG)),
-            fetchSuperHeroDetailUc = get(named(name=FETCH_SUPER_HERO_DETAIL_UC_TAG)),
+            synchronizeSuperHeroDetailUc = get(named(name=SYNCHRONIZE_SUPER_HERO_DETAIL_UC_TAG)),
             getSuperHeroDetailUc = get(named(name=GET_SUPER_HERO_DETAIL_PERSISTED_UC_TAG))
         )
     }
@@ -37,12 +37,12 @@ val bridgeModule = module {
 
 @ExperimentalCoroutinesApi
 val useCaseModule = module {
-    factory<DomainLayerContract.Presentation.UseCase<Nothing, Boolean>>(named(name = FETCH_SUPER_HEROES_LIST_UC_TAG)) {
-        FetchSuperHeroesListDataUc(superHeroesRepository = get(named(name = SUPER_HEROES_REPOSITORY_TAG)))
+    factory<DomainLayerContract.Presentation.UseCase<Nothing, Boolean>>(named(name = SYNCHRONIZE_SUPER_HEROES_LIST_UC_TAG)) {
+        SynchronizeSuperHeroesListDataUc(superHeroesRepository = get(named(name = SUPER_HEROES_REPOSITORY_TAG)))
     }
 
-    factory<DomainLayerContract.Presentation.UseCase<Int, Int>>(named(name = FETCH_SUPER_HERO_DETAIL_UC_TAG)) {
-        FetchSuperHeroDetailUc(superHeroesRepository = get(named(name = SUPER_HEROES_REPOSITORY_TAG)))
+    factory<DomainLayerContract.Presentation.UseCase<Int, Int>>(named(name = SYNCHRONIZE_SUPER_HERO_DETAIL_UC_TAG)) {
+        SynchronizeSuperHeroDetailUc(superHeroesRepository = get(named(name = SUPER_HEROES_REPOSITORY_TAG)))
     }
 
     factory<DomainLayerContract.Presentation.UseCase<Nothing, SuperHeroesDataBo>>(named(name = GET_SUPER_HEROES_LIST_PERSISTED_UC_TAG)) {

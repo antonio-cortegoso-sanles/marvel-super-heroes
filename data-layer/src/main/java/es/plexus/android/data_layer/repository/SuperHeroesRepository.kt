@@ -13,7 +13,7 @@ import es.plexus.android.domain_layer.domain.FailureBo
 import es.plexus.android.domain_layer.domain.ResultsBo
 import es.plexus.android.domain_layer.domain.SuperHeroesDataBo
 
-class SuperHeroesRepository(
+internal class SuperHeroesRepository(
     private val remoteDataSource: DataLayerContract.SuperHeroesDataSource.Remote,
     private val persistenceDataSource: DataLayerContract.SuperHeroesDataSource.Persistence
 ) : DomainLayerContract.Data.SuperHeroesRepository {

@@ -11,7 +11,7 @@ interface NetworkManager {
     suspend fun isNetworkAvailable(): Boolean
 }
 
-class NetworkManagerImpl(private val context: Context) :  NetworkManager{
+internal class NetworkManagerImpl(private val context: Context) :  NetworkManager{
 
     override suspend  fun isNetworkAvailable(): Boolean = context.isNetworkAvailable()
 }

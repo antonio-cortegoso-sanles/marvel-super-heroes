@@ -9,17 +9,17 @@ import es.plexus.android.domain_layer.domain.SuperHeroesDataBo
 const val SPLASH_BRIDGE_TAG = "splashDomainLayerBridge"
 
 interface SplashDomainLayerBridge : BaseDomainLayerBridge {
-    suspend fun fetchSuperHeroesList(): Either<FailureBo, Boolean>
+    suspend fun synchronizeSuperHeroesList(): Either<FailureBo, Boolean>
     suspend fun getSuperHeroesList(): Either<FailureBo, SuperHeroesDataBo>
 }
 
 internal class SplashDomainLayerBridgeImpl(
-    private val fetchSuperHeroesListUc: DomainLayerContract.Presentation.UseCase<Nothing, Boolean>,
+    private val synchronizeSuperHeroesListUc: DomainLayerContract.Presentation.UseCase<Nothing, Boolean>,
     private val getSuperHeroesListUc: DomainLayerContract.Presentation.UseCase<Nothing, SuperHeroesDataBo>,
 ) : SplashDomainLayerBridge {
 
-    override suspend fun fetchSuperHeroesList(): Either<FailureBo, Boolean> =
-        fetchSuperHeroesListUc.run()
+    override suspend fun synchronizeSuperHeroesList(): Either<FailureBo, Boolean> =
+        synchronizeSuperHeroesListUc.run()
 
     override suspend fun getSuperHeroesList(): Either<FailureBo, SuperHeroesDataBo> =
         getSuperHeroesListUc.run()

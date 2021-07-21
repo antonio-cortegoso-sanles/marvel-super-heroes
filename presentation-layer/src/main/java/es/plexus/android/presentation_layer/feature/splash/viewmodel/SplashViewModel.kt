@@ -27,9 +27,9 @@ class SplashViewModel(bridge: SplashDomainLayerBridge) :
     private fun handleSuccessGet(response: SuperHeroesDataBo) {
         if (response.results.isEmpty()) {
             viewModelScope.launch {
-                bridge.fetchSuperHeroesList().fold(::handleError, ::handleSuccess)
+                bridge.synchronizeSuperHeroesList().fold(::handleError, ::handleSuccess)
             }
-        }else{
+        } else {
             handleSuccess(true)
         }
     }
@@ -37,4 +37,5 @@ class SplashViewModel(bridge: SplashDomainLayerBridge) :
     private fun handleError(failure: FailureBo) {
         _screenState.value = ScreenState.Render(SplashState.ShowError(failure))
     }
+
 }

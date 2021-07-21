@@ -1,10 +1,10 @@
 package es.plexus.android.domain_layer
 
 import arrow.core.Either
-import es.plexus.android.domain_layer.domain.*
+import es.plexus.android.domain_layer.domain.FailureBo
+import es.plexus.android.domain_layer.domain.ResultsBo
+import es.plexus.android.domain_layer.domain.SuperHeroesDataBo
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 
 interface DomainLayerContract {
 

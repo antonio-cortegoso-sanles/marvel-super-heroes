@@ -8,7 +8,7 @@ import es.plexus.android.domain_layer.domain.ResultsBo
 
 const val GET_SUPER_HERO_DETAIL_PERSISTED_UC_TAG = "getSuperHeroDetailPersistedUc"
 
-class GetSuperHeroDetailUc(
+internal class GetSuperHeroDetailUc(
     private val superHeroesRepository: DomainLayerContract.Data.SuperHeroesRepository
 ) : DomainLayerContract.Presentation.UseCase<Int, ResultsBo> {
 

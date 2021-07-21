@@ -11,7 +11,7 @@ import es.plexus.android.data_layer.domain.FailureDto
 import es.plexus.android.data_layer.domain.dtoToBoFailure
 import es.plexus.android.domain_layer.domain.FailureBo
 
-class SuperHeroesPersistenceDataSource(
+internal class SuperHeroesPersistenceDataSource(
     private val database: HeroesDatabase
 ) : DataLayerContract.SuperHeroesDataSource.Persistence {
 
