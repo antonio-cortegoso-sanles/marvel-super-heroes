@@ -3,10 +3,12 @@ const val kotlinVersion = "1.5.21"
 object Build {
     object Versions {
         const val gradle = "4.2.1"
+        const val safeArgs = "2.3.5"
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.gradle}"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    const val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.safeArgs}"
 
 }
 
@@ -17,6 +19,7 @@ object Plugins {
     const val kotlinAndroidExtensions = "android.extensions"
     const val version = "version.gradle.kts"
     const val kotlinKapt = "kapt"
+    const val safeArgs = "androidx.navigation.safeargs"
 }
 
 object AndroidSdk {
@@ -41,11 +44,9 @@ object Libraries {
     const val arrowCore = "io.arrow-kt:arrow-core:${Versions.arrow}"
     const val arrowSyntax = "io.arrow-kt:arrow-syntax:${Versions.arrow}"
     const val arrowMeta = "io.arrow-kt:arrow-meta:${Versions.arrow}"
-    const val anko = "org.jetbrains.anko:anko:${Versions.anko}"
-    const val ankoDesign = "org.jetbrains.anko:anko-design:${Versions.anko}"
+
 
     // androidx
-    const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
     const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
@@ -57,6 +58,11 @@ object Libraries {
     const val androidxRoom = "androidx.room:room-runtime:${Versions.room}"
     const val androidxRoomCoroutines = "androidx.room:room-ktx:${Versions.room}"
     const val androidxRoomcompiler = "androidx.room:room-compiler:${Versions.room}"
+
+    // Kotlin
+    const val navigationFragment =
+        "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+    const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
 
     // google
     const val googleMaterial = "com.google.android.material:material:${Versions.googleMaterial}"
@@ -79,7 +85,6 @@ object Libraries {
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
 
     // testing
-    const val instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     const val junit = "junit:junit:${Versions.junit}"
     const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"
     const val kotlinCoroutinesTest =
@@ -96,7 +101,6 @@ object Libraries {
         const val stdLib = "1.4.10"
 
         // androidx
-        const val multidex = "2.0.1"
         const val appCompat = "1.3.0"
         const val lifecycle = "2.3.0-alpha07"
         const val constraintLayout = "2.0.4"
@@ -104,6 +108,7 @@ object Libraries {
         const val cardView = "1.0.0"
         const val coreDx = "1.3.2"
         const val room = "2.3.0"
+        const val navigation = "2.4.0-alpha04"
 
         // 3rd party
         const val googleMaterial = "1.4.0"
@@ -111,7 +116,6 @@ object Libraries {
         const val arrow = "0.11.0"
         const val retrofit = "2.8.1"
         const val moshi = "1.9.3"
-        const val anko = "0.10.8"
         const val interceptor = "4.9.0"
         const val lottie = "3.7.1"
         const val glide = "4.11.0"

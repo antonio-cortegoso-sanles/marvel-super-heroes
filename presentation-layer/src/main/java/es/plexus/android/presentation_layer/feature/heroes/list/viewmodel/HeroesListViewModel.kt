@@ -41,12 +41,16 @@ class HeroesListViewModel(
     }
 
     private fun handleDetailError(id: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             bridge.fetchSuperHeroDetail(id).fold(::handleError, ::handleDetailSuccess)
         }
     }
 
     private fun handleError(failure: FailureBo) {
         _screenState.value = ScreenState.Render(HeroesListState.ShowError(failure))
+    }
+
+    fun cleanDetailData() {
+        _screenState.value = ScreenState.Render(HeroesListState.GoToDetail(null))
     }
 }

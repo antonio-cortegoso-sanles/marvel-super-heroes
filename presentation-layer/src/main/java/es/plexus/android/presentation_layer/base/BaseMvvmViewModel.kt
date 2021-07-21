@@ -11,7 +11,11 @@ import kotlinx.coroutines.flow.StateFlow
 abstract class BaseMvvmViewModel<T : BaseDomainLayerBridge, S : BaseState>(protected val bridge: T) :
     ViewModel() {
 
-    protected val _screenState: MutableStateFlow<ScreenState<S>> by lazy { MutableStateFlow(ScreenState.Idle) }
+    protected val _screenState: MutableStateFlow<ScreenState<S>> by lazy {
+        MutableStateFlow(
+            ScreenState.Idle
+        )
+    }
 
     val screenState: StateFlow<ScreenState<S>>
         get() {

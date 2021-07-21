@@ -10,7 +10,7 @@ import es.plexus.android.presentation_layer.base.BaseMvvmView
 import es.plexus.android.presentation_layer.base.ScreenState
 import es.plexus.android.presentation_layer.databinding.ActivitySplashBinding
 import es.plexus.android.presentation_layer.feature.common.ui.ErrorDialogFragment
-import es.plexus.android.presentation_layer.feature.heroes.list.ui.view.HeroesListActivity
+import es.plexus.android.presentation_layer.feature.heroes.list.ui.view.HeroesActivity
 import es.plexus.android.presentation_layer.feature.splash.ui.state.SplashState
 import es.plexus.android.presentation_layer.feature.splash.viewmodel.SplashViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -57,7 +57,7 @@ class SplashActivity : AppCompatActivity(),
     }
 
     private fun goToListActivity() {
-        startActivity(Intent(this, HeroesListActivity::class.java))
+        startActivity(Intent(this, HeroesActivity::class.java))
         finish()
     }
 

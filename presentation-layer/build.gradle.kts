@@ -1,10 +1,10 @@
 plugins {
-    id (Plugins.androidLibrary)
+    id(Plugins.androidLibrary)
 
     kotlin(Plugins.kotlinAndroid)
     kotlin(Plugins.kotlinAndroidExtensions)
     kotlin(Plugins.kotlinKapt)
-    id("kotlin-android")
+    id(Plugins.safeArgs)
 }
 
 android {
@@ -35,7 +35,10 @@ android {
     buildTypes {
         named("release").configure {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -57,6 +60,9 @@ dependencies {
     implementation(Libraries.recyclerview)
     implementation(Libraries.cardview)
     implementation(Libraries.googleMaterial)
+    implementation(Libraries.navigationFragment)
+    implementation(Libraries.navigationUiKtx)
+
 
     // other modules
     implementation(project(":domain-layer"))

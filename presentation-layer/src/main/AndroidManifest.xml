@@ -14,9 +14,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.heroes.list.ui.view.HeroesListActivity"
-            android:theme="@style/Theme.MarvelSuperHeroes.NoActionBar"/>
-        <activity android:name=".feature.heroes.detail.ui.view.HeroDetailActivity"
+        <activity android:name=".feature.heroes.list.ui.view.HeroesActivity"
             android:theme="@style/Theme.MarvelSuperHeroes.NoActionBar"/>
     </application>
 
