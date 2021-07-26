@@ -26,6 +26,7 @@ Last step, Detail View shows the selected hero data.
 - Glide
 - Koin
 - Room DB
+- Navigation Component
 
 ## Installation
 
